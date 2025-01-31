@@ -1,23 +1,69 @@
-# enhance
+# CSV Transaction Enhancer
 
-**Open a new folder in your terminal and run the following**
+This script (`enhance.js`) processes a CSV file containing financial transactions, enhances them using the MX API, and outputs both processed and unprocessed transactions into separate CSV files.
 
+## Prerequisites
+
+Ensure you have the following installed on your machine:
+- [Node.js](https://nodejs.org/) (version 14 or higher recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+
+## Installation
+
+1. Clone this repository:
+   ```sh
+   git clone [https://github.com/yourusername/yourrepository.git](https://github.com/kieltyka/enhance.git)
+   cd yourrepository
+   ```
+2. Install the required dependencies using the package.json file:
+   ```sh
+   npm install
+   ```
+
+## Configuration
+
+1. Create a `.env` file in the same directory as the script and add your MX API credentials:
+   ```sh
+   MX_DEV_CREDS=base64encodedclientID:apikey
+   ```
+
+## Usage
+
+Run the script using the following command:
+```sh
+node enhance.js
 ```
-npm install fs axios fast-csv lodash cli-progress dotenv --save
-```
 
-1. **Create a .env file**
-    1. (can do so from the terminal with ‘touch .env’) that contains the following, where the MX_DEV_CREDS are your basic auth clientid:apikey
-    2. `MX_DEV_CREDS="Basic xxxx"`
-2. **Format CSV File**
-    1. Ensure your CSV file is properly formatted, rename it to ‘raw_txns.csv’ and place it in the same folder you created in Step 1.
-    2. The CSV file can have the following headers:
-        1. Amount, Description, Type (needs to be credit or debit), ID (optional)
-        2. If an ID isn’t provided the script will autogenerate an ID for the transaction as its required by MX
-    3. Note: The current script only supports <1M rows in the CSV, if you have more than 1M rows:
-        1. open terminal and enter
-            1. `brew install csvkit`
-        2. then:
-            1. `csvsplit -c 500000 raw_txns.csv`
-3. **Download the script** and add it to the folder: enhance.js
-4. **Run the script** In your terminal run: ‘node enhance.js’
+You will be prompted to enter the path to the CSV file that needs processing.
+
+### Expected CSV Format
+The input CSV should contain transaction details with the following headers:
+- `id` (optional, will be generated if missing)
+- `amount`
+- `description`
+- `type`
+- `merchant_category_code` (optional)
+
+### Output Files
+Two output files will be generated in the same directory as the input file:
+- `{input_filename}_enhanced.csv` - Contains successfully processed transactions.
+- `{input_filename}_unprocessed.csv` - Contains transactions that failed processing.
+
+### Console Output
+After processing, the script will display:
+- Total number of transactions.
+- Total processed transactions.
+- Total unprocessed transactions.
+- Percentage of processed transactions that:
+  - Have a category other than 'Uncategorized'.
+  - Have a `merchant_guid`.
+  - Have a `merchant_location_guid`.
+
+## Troubleshooting
+- If you see an error related to `MX_DEV_CREDS`, ensure you have properly set it in the `.env` file.
+- If the script does not process transactions correctly, verify that your input CSV format matches the expected structure.
+- For API errors, check MX API documentation or ensure your credentials have the necessary permissions.
+
+## License
+This project is licensed under the MIT License.
+
