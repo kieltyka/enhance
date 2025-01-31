@@ -12,8 +12,8 @@ Ensure you have the following installed on your machine:
 
 1. Clone this repository:
    ```sh
-   git clone [https://github.com/yourusername/yourrepository.git](https://github.com/kieltyka/enhance.git)
-   cd yourrepository
+   git clone https://github.com/kieltyka/enhance.git
+   cd enhance
    ```
 2. Install the required dependencies using the package.json file:
    ```sh
