@@ -1,4 +1,4 @@
-# CSV Transaction Enhancer
+# MX Transaction Cleansing
 
 This script (`enhance.js`) processes a CSV file containing financial transactions, enhances them using the MX API, and outputs both processed and unprocessed transactions into separate CSV files.
 
