@@ -24,7 +24,7 @@ Ensure you have the following installed on your machine:
 
 1. Create a `.env` file in the same directory as the script and add your MX API credentials:
    ```sh
-   MX_DEV_CREDS=base64encodedclientID:apikey
+   MX_DEV_CREDS=BASE64_ENCODED_CLIENT_ID:API_KEY
    ```
 
 ## Usage
