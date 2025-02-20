@@ -84,10 +84,10 @@ rl.question('Enter the path to the CSV file: ', (csvFilePath) => {
           const requestBody = {
             transactions: chunk.map((transaction) => {
               let txn = {
-                amount: transaction.amount,
+                amount: Math.abs(parseFloat(transaction.amount)), // Ensure amount is positive
                 description: transaction.description,
                 id: transaction.id,
-                type: transaction.type.toUpperCase(),
+                type: transaction.type ? transaction.type.toUpperCase() : 'DEBIT', // Default type to 'DEBIT'
               };
               if (hasMerchantCategoryCode) {
                 txn.merchant_category_code = transaction.merchant_category_code;
