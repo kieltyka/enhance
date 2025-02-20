@@ -39,9 +39,9 @@ You will be prompted to enter the path to the CSV file that needs processing.
 ### Expected CSV Format
 The input CSV should contain transaction details with the following headers:
 - `id` (optional, will be generated if missing)
-- `amount`
+- `amount` (always positive, use the 'type' field to denote whether its a credit or debit)
 - `description`
-- `type`
+- `type` ('CREDIT' or 'DEBIT')
 - `merchant_category_code` (optional)
 
 ### Output Files
